@@ -54,7 +54,7 @@ const Navbar = () => {
       </nav>
 
       <nav className="lg:hidden  p-4">
-        <div className="flex justify-between items-center mb-4 ">
+        <div className="flex justify-between items-center mb-4">
           <div>
             <h1 className="text-lg font-bold">Delivery in 18 minutes</h1>
             <p className="text-sm text-gray-600">

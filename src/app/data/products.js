@@ -187,6 +187,7 @@ const products = {
       id: 14,
       name: "Milma Pride Toned Fresh Milk",
       image: "img/products/product3.avif",
+      size:"520 ml",
       price: 28,
       time: "21 MINS",
       off: "20% OFF",
