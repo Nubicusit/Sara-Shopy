@@ -15,10 +15,10 @@ const CardSlider = () => {
       <div className="flex gap-4 px-4 overflow-x-scroll scrollbar-hide snap-x scroll-smooth">
         {cards.map((card) => (
           <img
-            key={card.id} 
+            key={card.id}
             src={card.image}
             alt={card.title}
-            className="w-64 h-50 object-fill rounded-lg"
+            className="w-[450px] h-[150px] sm:w-[450px] md:w-[180px] lg:w-[200px] xl:w-[250px] object-fill rounded-lg"
           />
         ))}
       </div>

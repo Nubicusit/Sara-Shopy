@@ -56,7 +56,7 @@ function LoginPage() {
                 <IoMdLock />
               </span>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password" }
                 placeholder="Password"
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
