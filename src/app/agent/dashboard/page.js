@@ -1,5 +1,4 @@
-import Dashboard from "@/app/components/AgentDashboard";
-
+import Dashboard from "@/app/agent_components/AgentDashboard";
 
 export default function AgentDashboard() {
   return (

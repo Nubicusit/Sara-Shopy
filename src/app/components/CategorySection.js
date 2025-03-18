@@ -14,7 +14,6 @@ const CategorySection = () => {
               height={80}
               className="mx-auto"
             />
-            {/* <p className="text-sm mt-1">{category.name}</p> */}
           </div>
         ))}
       </div>
