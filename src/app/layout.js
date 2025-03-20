@@ -22,7 +22,15 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const noFooterPages = ["/admin/dashboard","/agent/dashboard","/rider/dashboard"];
+  const noFooterPages = [
+    "/admin/dashboard",
+    "/agent/dashboard",
+    "/rider/dashboard",
+    "/admin/users",
+    "/admin/agents",
+    "/admin/shopowner",
+
+  ];
   return (
     <html lang="en">
       <body

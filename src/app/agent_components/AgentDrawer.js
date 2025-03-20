@@ -3,6 +3,9 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 export default function AgentDrawer({ isOpen, onClose }) {
+  console.log("AgentDrawer isOpen:", isOpen);
+  console.log("AgentDrawer onClose:", onClose);
+
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
@@ -46,20 +49,21 @@ export default function AgentDrawer({ isOpen, onClose }) {
                         href="#"
                         className="block py-2 text-gray-700 hover:text-gray-900"
                       >
-                        Dashboard
+                        Rider
                       </a>
                       <a
                         href="#"
                         className="block py-2 text-gray-700 hover:text-gray-900"
                       >
-                        Orders
+                        Profile
                       </a>
                       <a
                         href="#"
                         className="block py-2 text-gray-700 hover:text-gray-900"
                       >
-                        Settings
+                        Logout
                       </a>
+
                     </nav>
                   </div>
                 </div>

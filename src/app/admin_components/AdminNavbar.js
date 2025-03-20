@@ -13,7 +13,7 @@ const AdminNavbar = () => {
 
   return (
     <>
-      <Sidebar isOpen={sidebarOpen} />
+      <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="bg-white shadow-md p-4 rounded-lg flex justify-between items-center mb-6 lg:ml-64">
         <button onClick={toggleSidebar} className="lg:hidden p-2">
           <FaBars className="text-dark-gray" />
