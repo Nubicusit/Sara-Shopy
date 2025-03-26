@@ -5,18 +5,12 @@ import { MdEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
 
-function SignUpPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const RegisterModal = ({ isOpen}) => {
+  if (!isOpen) return null;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [userType, setUserType] = useState("User");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [selected, setSelected] = useState("user");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -25,47 +19,9 @@ function SignUpPage() {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); // Clear any previous errors
-    setSuccess(""); // Clear any previous success messages
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/signup",
-        {
-          name,
-          email,
-          password,
-          userType,
-        }
-      );
-
-      // Handle successful signup
-      console.log("Signup successful:", response.data);
-      setSuccess("Account created successfully! Please log in.");
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setUserType("User");
-    } catch (err) {
-      console.error("Signup failed:", err);
-      setError(
-        err.response?.data?.msg || "Failed to create account. Please try again."
-      );
-    }
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-white">
-      <div className="w-full max-w-sm p-6">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="w-full max-w-sm p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <Image
@@ -80,19 +36,11 @@ function SignUpPage() {
         {/* Welcome Message */}
         <h2 className="text-2xl font-bold text-center mb-2">Create Account</h2>
         <p className="text-center text-gray-500 mb-6">
-          Sign up to get started!
+          Sign up to get started?
         </p>
 
-        {/* Error Message */}
-        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
-
-        {/* Success Message */}
-        {success && (
-          <p className="text-center text-green-500 mb-4">{success}</p>
-        )}
-
-        {/* Signup Form */}
-        <form onSubmit={handleSubmit}>
+        {/* Login Form */}
+        <form>
           {/* Full Name Input */}
           <div className="mb-6">
             <label className="block relative">
@@ -102,10 +50,7 @@ function SignUpPage() {
               <input
                 type="text"
                 placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
             </label>
           </div>
@@ -119,10 +64,7 @@ function SignUpPage() {
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
             </label>
           </div>
@@ -136,10 +78,7 @@ function SignUpPage() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
               <span
                 onClick={togglePasswordVisibility}
@@ -160,10 +99,7 @@ function SignUpPage() {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
               <span
                 onClick={toggleConfirmPasswordVisibility}
@@ -175,7 +111,7 @@ function SignUpPage() {
             </label>
           </div>
 
-          {/* Account Type Selection */}
+          {/* Forgot Password Link */}
           <div className="flex justify-center mb-4">
             <p className="text-sm md:text-lg lg:text-sm font-bold">
               Select Account Type
@@ -186,10 +122,10 @@ function SignUpPage() {
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
-                name="userType"
+                name="role"
                 value="user"
-                checked={userType === "User"}
-                onChange={() => setUserType("User")}
+                checked={selected === "user"}
+                onChange={() => setSelected("user")}
                 className="h-5 w-5 text-blue-600 focus:ring-blue-500"
               />
               <span className="text-lg font-semibold">User</span>
@@ -197,35 +133,35 @@ function SignUpPage() {
             <label className="flex items-center space-x-2 cursor-pointer ml-2">
               <input
                 type="radio"
-                name="userType"
+                name="role"
                 value="agent"
-                checked={userType === "Agent"}
-                onChange={() => setUserType("Agent")}
+                checked={selected === "agent"}
+                onChange={() => setSelected("agent")}
                 className="h-5 w-5 text-blue-600 focus:ring-blue-500"
               />
               <span className="text-lg font-semibold">Agent</span>
             </label>
           </div>
 
-          {/* Signup Button */}
+          {/* Login Button */}
           <button
             type="submit"
             className="w-full py-2 mb-4 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 transition-all duration-300"
           >
-            Sign Up
+            Login
           </button>
         </form>
 
-        {/* Login Link */}
+        {/* Sign Up Link */}
         <p className="text-center text-gray-500">
-          Already have an account?{" "}
-          <Link href="/login" className="text-blue-600 hover:underline">
-            Log In
+          Don&apos;t have an account?
+          <Link href="#" className="text-blue-600 hover:underline">
+            Sign Up
           </Link>
         </p>
       </div>
     </div>
   );
-}
+};
 
-export default SignUpPage;
+export default RegisterModal;

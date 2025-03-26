@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
           {/* Maintain height */}
           {quantity === 0 ? (
             <button
-              className="bg-[#FFFFCC] border-[1px] border-[#ffd400] text-sm text-black px-4 py-1 rounded-md w-full"
+              className="bg-[#ffffff] border-[1px] border-[#ffd400] text-sm text-black px-4 py-1 rounded-md w-full"
               onClick={() => setQuantity(1)}
             >
               ADD

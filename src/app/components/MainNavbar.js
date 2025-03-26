@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -10,10 +11,33 @@ import { HiLocationMarker } from "react-icons/hi";
 import { MdShoppingBag } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { RiShapesFill } from "react-icons/ri";
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
 
 const MainNavbar = () => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const openRegisterModal = () => {
+    setIsLoginModalOpen(false); 
+    setIsRegisterModalOpen(true); 
+  };
+
+  const closeRegisterModal = () => {
+    setIsRegisterModalOpen(false);
+  };
+
   return (
     <>
+      {/* Navbar */}
       <nav className="hidden sm:hidden md:hidden lg:flex px-3 items-center justify-between z-3 sticky top-0 h-[70px] bg-[#ffd400] border-b border-[#ffd400]">
         <div className="logo">
           <Link href="/">
@@ -45,7 +69,12 @@ const MainNavbar = () => {
             className="border-none w-[95%] bg-transparent focus:outline-none ml-2"
           />
         </div>
-        <button className="btn text-lg hidden md:block">Login</button>
+        <button
+          className="btn text-lg hidden md:block"
+          onClick={openLoginModal}
+        >
+          Login
+        </button>
         <button
           className="btn bg-black text-white px-4 py-2 rounded-lg w-full md:w-auto my-2 md:my-0 flex items-center gap-2"
           id="sara-cart-button"
@@ -54,6 +83,19 @@ const MainNavbar = () => {
         </button>
       </nav>
 
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={closeLoginModal}
+        onRegisterOpen={openRegisterModal} 
+      />
+
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={closeRegisterModal}
+      />
+
+      {/* Mobile Navbar */}
       <nav className="lg:hidden  p-4">
         <div className="flex justify-between items-center mb-4">
           <div>

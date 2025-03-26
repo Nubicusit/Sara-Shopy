@@ -40,7 +40,7 @@ const products = [
     price: 299,
     image: "/homepod.jpg",
     description: "Smart speaker for home.",
-  },
+  }
 ];
 
 export default products;

@@ -29,7 +29,13 @@ export default function RootLayout({ children }) {
     "/admin/users",
     "/admin/agents",
     "/admin/shopowner",
-
+    "/shopowner/dashboard",
+    "/shopowner/total-sales",
+    "/shopowner/total-orders",
+    "/shopowner/total-customers",
+    "/shopowner/pending-orders",
+    "/shopowner/completed-orders",
+    
   ];
   return (
     <html lang="en">

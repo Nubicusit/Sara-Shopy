@@ -28,7 +28,7 @@ export default function RiderContent() {
   const [rideCount, setRideCount] = useState(0);
   const maxRides = 20;
 
-  // Sample current orders data
+ 
   const currentOrders = [
     {
       restaurant: "Pizza Hub",
@@ -42,7 +42,18 @@ export default function RiderContent() {
       address: "456 Avenue, City",
       phone: "+19876543210",
     },
-    // Add more orders as needed
+    {
+      restaurant: "Subway",
+      orderId: "ORD54321",
+      address: "789 Road, City",
+      phone: "+16543218970",
+    },
+    {
+      restaurant: "McDonald's",
+      orderId: "ORD09876",
+      address: "987 Lane, City",
+      phone: "+19087654321",
+    },
   ];
 
   // Simulate ride count animation

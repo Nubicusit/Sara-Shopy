@@ -1,8 +1,10 @@
 "use client";
 import { usePathname } from "next/navigation";
 import AdminNavbar from "../admin_components/AdminNavbar";
-import Dashboard from "../agent_components/AgentDashboard";
 import MainNavbar from "./MainNavbar";
+import AgentNavbar from "../agent_components/AgentNavbar";
+import RiderNavbar from "../rider_components/RiderNavbar";
+import ShopOwnerNavbar from "../shop_owner_components/ShopownerNavbar";
 
 
 const Navbar = () => {
@@ -10,11 +12,14 @@ const Navbar = () => {
 
   if (pathname.startsWith("/admin")) {
     return <AdminNavbar />;
-  } else if (pathname.startsWith("/agent/dashboard")) {
-    return <Dashboard />;
+  } else if (pathname.startsWith("/agent")) {
+    return <AgentNavbar />;
   }
-  else if((pathname.startsWith("/rider/dashboard"))) {
+  else if((pathname.startsWith("/rider"))) {
     return <RiderNavbar/>
+  }
+  else if((pathname.startsWith("/shopowner"))) {
+    return <ShopOwnerNavbar/>;
   }
   else {
     return <MainNavbar/>;

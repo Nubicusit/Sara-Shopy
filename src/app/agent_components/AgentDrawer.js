@@ -1,77 +1,38 @@
-"use client";
-import { Fragment } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-
 export default function AgentDrawer({ isOpen, onClose }) {
-  console.log("AgentDrawer isOpen:", isOpen);
-  console.log("AgentDrawer onClose:", onClose);
+  if (!isOpen) return null;
 
   return (
-    <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed inset-0 overflow-hidden z-50"
-        onClose={onClose}
-      >
-        <div className="absolute inset-0 overflow-hidden">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-in-out duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in-out duration-500"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+    <div className="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-xl z-50">
+      <div className="p-6 border-b">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-bold">Agent Menu</h2>
+          <button 
+            onClick={onClose} 
+            className="text-gray-500 hover:text-gray-700"
           >
-            <Dialog.Overlay className="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
-
-          <div className="fixed inset-y-0 left-0 max-w-full flex">
-            <Transition.Child
-              as={Fragment}
-              enter="transform transition ease-in-out duration-500 sm:duration-700"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transform transition ease-in-out duration-500 sm:duration-700"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+            <svg 
+              className="h-6 w-6" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
             >
-              <div className="relative w-screen max-w-md">
-                <div className="h-full flex flex-col bg-white shadow-xl">
-                  <div className="flex-1 overflow-y-auto">
-                    <div className="px-4 py-6 bg-gray-50">
-                      <h2 className="text-lg font-medium text-gray-900">
-                        Menu
-                      </h2>
-                    </div>
-                    <nav className="px-4 py-6">
-                      <a
-                        href="#"
-                        className="block py-2 text-gray-700 hover:text-gray-900"
-                      >
-                        Rider
-                      </a>
-                      <a
-                        href="#"
-                        className="block py-2 text-gray-700 hover:text-gray-900"
-                      >
-                        Profile
-                      </a>
-                      <a
-                        href="#"
-                        className="block py-2 text-gray-700 hover:text-gray-900"
-                      >
-                        Logout
-                      </a>
-
-                    </nav>
-                  </div>
-                </div>
-              </div>
-            </Transition.Child>
-          </div>
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                d="M6 18L18 6M6 6l12 12" 
+              />
+            </svg>
+          </button>
         </div>
-      </Dialog>
-    </Transition.Root>
+      </div>
+      <div className="p-4">
+        <ul>
+          <li className="py-2 hover:bg-gray-100">Dashboard</li>
+          <li className="py-2 hover:bg-gray-100">Orders</li>
+          <li className="py-2 hover:bg-gray-100">Analytics</li>
+        </ul>
+      </div>
+    </div>
   );
 }

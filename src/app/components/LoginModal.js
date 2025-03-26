@@ -1,50 +1,33 @@
-"use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
+import { MdOutlineClose } from "react-icons/md";
 
-function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ isOpen, onClose, onRegisterOpen }) => {
+  if (!isOpen) return null;
+
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); 
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      // Handle successful login (e.g., save token, redirect)
-      console.log("Login successful:", response.data);
-      // Example: Save token to localStorage
-      localStorage.setItem("token", response.data.token);
-      // Redirect to a protected page
-      window.location.href = "/admin/dashboard";
-    } catch (err) {
-      console.error("Login failed:", err);
-      setError("Invalid email or password");
-    }
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-white">
-      <div className="w-full max-w-sm p-6">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-5 z-50">
+      <div className="w-full max-w-sm p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+          >
+            <MdOutlineClose />
+          </button>
+        </div>
+
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <Image
@@ -60,11 +43,8 @@ function LoginPage() {
         <h2 className="text-2xl font-bold text-center mb-2">Welcome Back!</h2>
         <p className="text-center text-gray-500 mb-6">Login to your account</p>
 
-        {/* Error Message */}
-        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
-
         {/* Login Form */}
-        <form onSubmit={handleSubmit}>
+        <form>
           {/* Email Input */}
           <div className="mb-4">
             <label className="block relative">
@@ -74,10 +54,7 @@ function LoginPage() {
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
             </label>
           </div>
@@ -91,10 +68,7 @@ function LoginPage() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
               />
               <span
                 onClick={togglePasswordVisibility}
@@ -125,13 +99,16 @@ function LoginPage() {
         {/* Sign Up Link */}
         <p className="text-center text-gray-500">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-blue-600 hover:underline">
-            Sign Up
-          </Link>
+          <button
+            onClick={onRegisterOpen} // Open Register Modal
+            className="text-blue-600 hover:underline"
+          >
+            Register
+          </button>
         </p>
       </div>
     </div>
   );
-}
+};
 
-export default LoginPage;
+export default LoginModal;

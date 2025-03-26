@@ -1,6 +1,5 @@
 import CategorySection from "@/app/components/CategorySection";
 import ProductSection from "@/app/components/ProductSection";
-import Carousel from "@/app/components/Carousel";
 import products from "@/app/data/products";
 import Banner from "./components/Banner";
 import CardSlider from "./components/CardSlider";

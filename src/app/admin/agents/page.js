@@ -99,7 +99,7 @@ export default function AgentAdmin() {
         <button
           type="button"
           onClick={openAddAgentModal}
-          className="focus:outline-none text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 shadow-md transition-all dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+          className="focus:outline-none text-white bg-amber-300 hover:bg-amber-400 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-6 py-2.5 shadow-md transition-all"
         >
           Add Agent
         </button>
