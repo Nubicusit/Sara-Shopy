@@ -15,6 +15,7 @@ import AgentDrawer from "@/app/agent_components/AgentDrawer";
 import MetricCard from "@/app/agent_components/MetricCard";
 import DataTable from "@/app/agent_components/DataTable";
 
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -35,8 +36,10 @@ export default function AgentDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-    
 
+
+
+      {/* Drawer controlled by state */}
       <AgentDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />
 
       <div className="p-6">
@@ -51,7 +54,7 @@ export default function AgentDashboard() {
         </div>
 
         <div className="mt-6">
-          <DataTable />
+          <DataTable/>
         </div>
       </div>
     </div>

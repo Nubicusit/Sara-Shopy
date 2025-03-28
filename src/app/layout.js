@@ -24,18 +24,17 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const noFooterPages = [
     "/admin/dashboard",
-    "/agent/dashboard",
-    "/rider/dashboard",
     "/admin/users",
     "/admin/agents",
     "/admin/shopowner",
+    "/agent/dashboard",
+    "/rider/dashboard",
     "/shopowner/dashboard",
     "/shopowner/total-sales",
     "/shopowner/total-orders",
     "/shopowner/total-customers",
     "/shopowner/pending-orders",
     "/shopowner/completed-orders",
-    
   ];
   return (
     <html lang="en">

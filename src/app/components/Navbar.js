@@ -3,8 +3,8 @@ import { usePathname } from "next/navigation";
 import AdminNavbar from "../admin_components/AdminNavbar";
 import MainNavbar from "./MainNavbar";
 import AgentNavbar from "../agent_components/AgentNavbar";
-import RiderNavbar from "../rider_components/RiderNavbar";
 import ShopOwnerNavbar from "../shop_owner_components/ShopownerNavbar";
+import RiderHeader from "../rider_components/RiderHeader";
 
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
     return <AgentNavbar />;
   }
   else if((pathname.startsWith("/rider"))) {
-    return <RiderNavbar/>
+    return <RiderHeader/>
   }
   else if((pathname.startsWith("/shopowner"))) {
     return <ShopOwnerNavbar/>;
