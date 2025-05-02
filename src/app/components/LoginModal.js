@@ -16,7 +16,7 @@ const LoginModal = ({ isOpen, onClose, onRegisterOpen }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-5 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-5 z-50 backdrop-blur-sm">
       <div className="w-full max-w-sm p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <div className="flex justify-end">
           <button
@@ -100,7 +100,7 @@ const LoginModal = ({ isOpen, onClose, onRegisterOpen }) => {
         <p className="text-center text-gray-500">
           Don&apos;t have an account?{" "}
           <button
-            onClick={onRegisterOpen} // Open Register Modal
+            onClick={onRegisterOpen} 
             className="text-blue-600 hover:underline"
           >
             Register

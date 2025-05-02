@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
+import { authService } from "@/services/api";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -19,23 +19,16 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      // Handle successful login (e.g., save token, redirect)
-      console.log("Login successful:", response.data);
-      // Example: Save token to localStorage
-      localStorage.setItem("token", response.data.token);
-      // Redirect to a protected page
-      window.location.href = "/admin/dashboard";
+      const response = await authService.login({ email, password });
+      if (response.token) {
+        localStorage.setItem("token", response.token);
+        window.location.href = "/admin/dashboard";
+      } else {
+        setError(response.msg || "Invalid email or password");
+      }
     } catch (err) {
       console.error("Login failed:", err);
       setError("Invalid email or password");

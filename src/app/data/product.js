@@ -1,46 +1,81 @@
-const products = [
-  {
-    id: 1,
-    name: "iPhone 13",
-    price: 999,
-    image: "/iphone.jpg",
-    description: "Latest iPhone model.",
-  },
-  {
-    id: 2,
-    name: "MacBook Pro",
-    price: 1999,
-    image: "/macbook.jpg",
-    description: "Powerful laptop.",
-  },
-  {
-    id: 3,
-    name: "AirPods",
-    price: 199,
-    image: "/airpods.jpg",
-    description: "Wireless earbuds.",
-  },
-  {
-    id: 4,
-    name: "Apple Watch",
-    price: 399,
-    image: "/watch.jpg",
-    description: "Smartwatch with health tracking.",
-  },
-  {
-    id: 5,
-    name: "iPad Pro",
-    price: 1099,
-    image: "/ipad.jpg",
-    description: "High-performance tablet.",
-  },
-  {
-    id: 6,
-    name: "HomePod",
-    price: 299,
-    image: "/homepod.jpg",
-    description: "Smart speaker for home.",
-  }
-];
+const product = [
+    {
+      id: 1,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+      off: "30% OFF",
+    },
+    {
+      id: 2,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
 
-export default products;
+
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+      off: "40% OFF",
+    },
+    {
+      id: 3,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 4,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 5,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 6,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 7,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 8,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+    },
+    {
+      id: 9,
+      name: "Milma Pride Toned Fresh Milk",
+      image: "img/products/product3.avif",
+      size: "520 ml",
+      price: 28,
+      time: "21 MINS",
+      off: "20% OFF",
+    },
+  ];
+
+export default product;

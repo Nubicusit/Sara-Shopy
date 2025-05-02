@@ -5,18 +5,12 @@ import { MdEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import axios from "axios";
 
-function SignUpPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+const RegisterModal = ({ isOpen }) => {
+  if (!isOpen) return null;
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [userType, setUserType] = useState("User");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [selected, setSelected] = useState("user");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -26,206 +20,149 @@ function SignUpPage() {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); // Clear any previous errors
-    setSuccess(""); // Clear any previous success messages
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/signup",
-        {
-          name,
-          email,
-          password,
-          userType,
-        }
-      );
-
-      // Handle successful signup
-      console.log("Signup successful:", response.data);
-      setSuccess("Account created successfully! Please log in.");
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setUserType("User");
-    } catch (err) {
-      console.error("Signup failed:", err);
-      setError(
-        err.response?.data?.msg || "Failed to create account. Please try again."
-      );
-    }
-  };
-
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-white">
-      <div className="w-full max-w-sm p-6">
-        {/* Logo and Title */}
-        <div className="text-center mb-8">
-          <Image
-            src="img/navbar/sara logo-02.svg"
-            alt="Logo Sara shop"
-            width={250}
-            height={100}
-            className="mx-auto mb-4"
-          />
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-y-auto backdrop-blur-sm">
+      <div className="w-full max-w-4xl p-8 bg-white dark:bg-gray-800 rounded-xl shadow-2xl flex flex-col md:flex-row border border-gray-200 dark:border-gray-700">
+        {/* Logo Section */}
+        <div className="md:w-1/2 flex flex-col items-center justify-center mb-8 md:mb-0 md:pr-8">
+          <div className="mb-6 transform rotate-0">
+            <Image
+              src="img/navbar/sara logo-02.svg"
+              alt="Logo Sara shop"
+              width={250}
+              height={100}
+              className="mx-auto"
+            />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200">Welcome to Sara Shop</h3>
+          <p className="text-center text-gray-500 dark:text-gray-400 mt-2">
+            Join our community and start shopping with amazing deals
+          </p>
         </div>
 
-        {/* Welcome Message */}
-        <h2 className="text-2xl font-bold text-center mb-2">Create Account</h2>
-        <p className="text-center text-gray-500 mb-6">
-          Sign up to get started!
-        </p>
+        {/* Form Section */}
+        <div className="md:w-1/2">
+          {/* Welcome Message */}
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Create Account</h2>
+            <p className="text-gray-500 dark:text-gray-400">Sign up to get started</p>
+          </div>
 
-        {/* Error Message */}
-        {error && <p className="text-center text-red-500 mb-4">{error}</p>}
-
-        {/* Success Message */}
-        {success && (
-          <p className="text-center text-green-500 mb-4">{success}</p>
-        )}
-
-        {/* Signup Form */}
-        <form onSubmit={handleSubmit}>
-          {/* Full Name Input */}
-          <div className="mb-6">
-            <label className="block relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+          {/* Register Form */}
+          <form className="space-y-5">
+            {/* Full Name Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                 <FaUserAlt />
-              </span>
+              </div>
               <input
                 type="text"
                 placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
+                className="w-full py-3 pl-10 pr-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
               />
-            </label>
-          </div>
+            </div>
 
-          {/* Email Input */}
-          <div className="mb-4">
-            <label className="block relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            {/* Email Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                 <MdEmail />
-              </span>
+              </div>
               <input
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
+                className="w-full py-3 pl-10 pr-4 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
               />
-            </label>
-          </div>
+            </div>
 
-          {/* Password Input */}
-          <div className="mb-4">
-            <label className="block relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            {/* Password Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                 <IoMdLock />
-              </span>
+              </div>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
+                className="w-full py-3 pl-10 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
               />
-              <span
+              <button
+                type="button"
                 onClick={togglePasswordVisibility}
-                style={{ cursor: "pointer" }}
-                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </span>
-            </label>
-          </div>
+              </button>
+            </div>
 
-          {/* Confirm Password Input */}
-          <div className="mb-4">
-            <label className="block relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            {/* Confirm Password Input */}
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                 <IoMdLock />
-              </span>
+              </div>
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full py-2 pl-10 pr-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                required
+                className="w-full py-3 pl-10 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
               />
-              <span
+              <button
+                type="button"
                 onClick={toggleConfirmPasswordVisibility}
-                style={{ cursor: "pointer" }}
-                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
               >
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-              </span>
-            </label>
-          </div>
+              </button>
+            </div>
 
-          {/* Account Type Selection */}
-          <div className="flex justify-center mb-4">
-            <p className="text-sm md:text-lg lg:text-sm font-bold">
-              Select Account Type
+            {/* Account Type Selection */}
+            <div className="pt-2">
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Select Account Type</p>
+              <div className="flex space-x-6">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="user"
+                    checked={selected === "user"}
+                    onChange={() => setSelected("user")}
+                    className="h-5 w-5 text-yellow-600 focus:ring-yellow-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-gray-700 dark:text-gray-300">User</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="agent"
+                    checked={selected === "agent"}
+                    onChange={() => setSelected("agent")}
+                    className="h-5 w-5 text-yellow-600 focus:ring-yellow-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-gray-700 dark:text-gray-300">Agent</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Register Button */}
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-lg transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+            >
+              Register
+            </button>
+          </form>
+
+          {/* Login Link */}
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 dark:text-gray-400">
+              Already have an account?{" "}
+              <Link href="#" className="text-yellow-600 hover:text-yellow-700 dark:hover:text-yellow-500 font-medium hover:underline">
+                Login
+              </Link>
             </p>
           </div>
-
-          <div className="flex justify-center mb-4">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <input
-                type="radio"
-                name="userType"
-                value="user"
-                checked={userType === "User"}
-                onChange={() => setUserType("User")}
-                className="h-5 w-5 text-blue-600 focus:ring-blue-500"
-              />
-              <span className="text-lg font-semibold">User</span>
-            </label>
-            <label className="flex items-center space-x-2 cursor-pointer ml-2">
-              <input
-                type="radio"
-                name="userType"
-                value="agent"
-                checked={userType === "Agent"}
-                onChange={() => setUserType("Agent")}
-                className="h-5 w-5 text-blue-600 focus:ring-blue-500"
-              />
-              <span className="text-lg font-semibold">Agent</span>
-            </label>
-          </div>
-
-          {/* Signup Button */}
-          <button
-            type="submit"
-            className="w-full py-2 mb-4 text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 transition-all duration-300"
-          >
-            Sign Up
-          </button>
-        </form>
-
-        {/* Login Link */}
-        <p className="text-center text-gray-500">
-          Already have an account?{" "}
-          <Link href="/login" className="text-blue-600 hover:underline">
-            Log In
-          </Link>
-        </p>
+        </div>
       </div>
     </div>
   );
-}
+};
 
-export default SignUpPage;
+export default RegisterModal;

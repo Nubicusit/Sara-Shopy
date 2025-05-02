@@ -3,13 +3,16 @@ import ProductSection from "@/app/components/ProductSection";
 import products from "@/app/data/products";
 import Banner from "./components/Banner";
 import CardSlider from "./components/CardSlider";
+import LocationModal from "./components/LocationModal";
 
 export default function HomePage() {
   return (
     <div className="container mx-auto px-4 py-6">
+      <LocationModal />
+      
       {/* Banner */}
       <Banner />
-      
+
       {/* Categories */}
       <CategorySection />
 

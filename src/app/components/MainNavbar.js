@@ -46,7 +46,7 @@ const MainNavbar = () => {
               alt="Logo"
               width={150}
               height={120}
-              className="w-[150px] h-[120px] md:w-[100px] md:h-[100px]"
+              className="w-[150px] h-[120px] md:w-[200px] md:h-[100px]"
             />
           </Link>
         </div>

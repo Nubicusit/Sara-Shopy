@@ -62,7 +62,7 @@ export default function Testimonials() {
                 <h5 className="font-medium">{testimonial.author}</h5>
                 <p className="text-gray-500 text-sm">{testimonial.role}</p>
               </div>
-            </div>
+            </div>[]
           </div>
         ))}
       </div>
